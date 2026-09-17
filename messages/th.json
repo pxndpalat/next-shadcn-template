@@ -1,0 +1,12 @@
+{
+  "Metadata": {
+    "title": "Template",
+    "description": "เทมเพลต Next.js"
+  },
+  "HomePage": {
+    "eyebrow": "Software development & AI implementation",
+    "title": "พัฒนาซอฟต์แวร์ให้ตรงธุรกิจ",
+    "titleContinuation": "พร้อมต่อยอด AI ได้จริง",
+    "description": "ออกแบบและพัฒนาระบบให้เหมาะกับการทำงานจริงของธุรกิจ ตั้งแต่ระบบภายในองค์กร ไปจนถึงการเชื่อมต่อข้อมูลและ AI"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "Metadata": {
+    "title": "Template",
+    "description": "Next.js template"
+  },
+  "HomePage": {
+    "eyebrow": "Software development & AI implementation",
+    "title": "Software tailored to your business",
+    "titleContinuation": "ready to grow with AI",
+    "description": "We design and build software around real business workflows, from internal systems to data integrations and AI."
+  }
+}

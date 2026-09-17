@@ -12,6 +12,7 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -64,7 +65,14 @@ const differentiators = [
   { title: "ต่อยอด AI ได้จริง", icon: Sparkles },
 ];
 
-export default function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "HomePage" });
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto w-full max-w-[1360px] px-4 py-3 sm:px-6 lg:px-8">
@@ -122,16 +130,15 @@ export default function Home() {
           <section className="grid min-h-[560px] overflow-hidden rounded-3xl bg-card px-6 py-12 shadow-soft lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-14 lg:py-16">
             <div className="relative z-10 max-w-2xl">
               <p className="mb-5 text-xs font-semibold tracking-[0.16em] text-muted-foreground uppercase">
-                Software development & AI implementation
+                {t("eyebrow")}
               </p>
               <h1 className="text-4xl leading-[1.14] font-bold tracking-[-0.025em] sm:text-5xl lg:text-6xl">
-                พัฒนาซอฟต์แวร์ให้ตรงธุรกิจ
+                {t("title")}
                 <br />
-                พร้อมต่อยอด AI ได้จริง
+                {t("titleContinuation")}
               </h1>
               <p className="mt-6 max-w-[58ch] text-base leading-relaxed text-muted-foreground sm:text-lg">
-                ออกแบบและพัฒนาระบบให้เหมาะกับการทำงานจริงของธุรกิจ
-                ตั้งแต่ระบบภายในองค์กร ไปจนถึงการเชื่อมต่อข้อมูลและ AI
+                {t("description")}
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -159,22 +166,20 @@ export default function Home() {
               </div>
 
               <div className="mt-10 grid gap-4 border-t border-border pt-6 sm:grid-cols-3">
-                {[
-                  "เข้าใจงานจริง",
-                  "ออกแบบให้ใช้งานได้จริง",
-                  "พร้อมต่อยอด AI",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-2 text-sm font-medium"
-                  >
-                    <CircleCheck
-                      className="size-5 text-accent-strong"
-                      aria-hidden="true"
-                    />
-                    {item}
-                  </div>
-                ))}
+                {["เข้าใจงานจริง", "ออกแบบให้ใช้งานได้จริง", "พร้อมต่อยอด AI"].map(
+                  (item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-2 text-sm font-medium"
+                    >
+                      <CircleCheck
+                        className="size-5 text-accent-strong"
+                        aria-hidden="true"
+                      />
+                      {item}
+                    </div>
+                  ),
+                )}
               </div>
             </div>
 
@@ -249,8 +254,7 @@ export default function Home() {
                 จากโจทย์ธุรกิจ สู่ระบบที่ใช้งานได้จริง
               </p>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                เริ่มจากทำความเข้าใจงาน แล้วค่อยออกแบบ พัฒนา
-                และต่อยอดอย่างเป็นระบบ
+                เริ่มจากทำความเข้าใจงาน แล้วค่อยออกแบบ พัฒนา และต่อยอดอย่างเป็นระบบ
               </p>
             </div>
             <ol className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
@@ -290,8 +294,8 @@ export default function Home() {
                 </p>
               </div>
               <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                โครงสร้างระบบยืดหยุ่นตามลักษณะงาน
-                พร้อมวางรากฐานสำหรับการเชื่อมต่อข้อมูลและ AI
+                โครงสร้างระบบยืดหยุ่นตามลักษณะงาน พร้อมวางรากฐานสำหรับการเชื่อมต่อข้อมูลและ
+                AI
               </p>
             </div>
 
