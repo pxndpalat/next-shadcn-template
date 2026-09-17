@@ -1,22 +1,22 @@
 import { PrismaMariaDb } from "@prisma/adapter-mariadb";
-import { getDatabaseConfig } from "@/lib/db/config";
+import { getDatabaseUrl } from "@/lib/db/config";
 import { PrismaClient } from "../../generated/prisma/client";
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
-const database = getDatabaseConfig();
-const isLocalDatabase = ["localhost", "127.0.0.1", "::1"].includes(
-  database.host,
-);
+const databaseUrl = getDatabaseUrl();
+const parsedDatabaseUrl = new URL(databaseUrl);
+const databaseHost = parsedDatabaseUrl.hostname.replace(/^\[|\]$/g, "");
 const adapter = new PrismaMariaDb({
-  ...database,
-  ssl: true,
-  connectTimeout: 10_000,
-  acquireTimeout: 30_000,
+  host: databaseHost,
+  port: Number(parsedDatabaseUrl.port || 3306),
+  user: decodeURIComponent(parsedDatabaseUrl.username),
+  password: decodeURIComponent(parsedDatabaseUrl.password),
+  database: decodeURIComponent(parsedDatabaseUrl.pathname.slice(1)),
+  allowPublicKeyRetrieval: true,
   connectionLimit: 5,
-  allowPublicKeyRetrieval: isLocalDatabase,
 });
 
 export const prisma =
