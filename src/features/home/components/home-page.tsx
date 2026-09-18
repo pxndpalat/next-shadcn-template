@@ -124,7 +124,7 @@ export function HomePage({ content }: Props) {
 
             <div className="relative mt-12 min-h-[360px] lg:mt-0 lg:min-h-[480px] lg:pl-10">
               <Image
-                src="/images/hero-business-dashboard.png"
+                src="/images/hero-business-dashboard.webp"
                 alt={content.hero.imageAlt}
                 fill
                 priority
